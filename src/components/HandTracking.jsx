@@ -271,27 +271,28 @@ function HandTracking({ onHandMove, onPinch, onRelease, enabled }) {
       />
 
       <div className="hand-tracking-container">
+        {/* Instrucciones y estado — ENCIMA de la cámara, no dentro */}
+        <div className="camera-info-bar">
+          <div className={`status-indicator ${isReady ? 'active' : 'loading'}`}>
+            <span className="status-dot"></span>
+            {isReady ? 'Cámara Activa' : loadStatus}
+          </div>
+          {gesture !== 'none' && (
+            <div className={`pinch-indicator gesture-badge-${gesture}`}>
+              {gestureLabel[gesture]}
+            </div>
+          )}
+          <div className="instructions-inline">
+            <span>☝️ Mover</span>
+            <span>🤏 Agarrar</span>
+            <span>☝️↓ Scroll</span>
+          </div>
+        </div>
+
+        {/* Solo video + canvas — sin overlays que tapen la mano */}
         <div className="camera-view">
           <video ref={videoRef} className="input-video" />
           <canvas ref={canvasRef} className="output-canvas" width="640" height="480" />
-
-          <div className="tracking-status">
-            <div className={`status-indicator ${isReady ? 'active' : 'loading'}`}>
-              <span className="status-dot"></span>
-              {isReady ? 'Cámara Activa' : loadStatus}
-            </div>
-            {gesture !== 'none' && (
-              <div className={`pinch-indicator gesture-badge-${gesture}`}>
-                {gestureLabel[gesture]}
-              </div>
-            )}
-          </div>
-
-          <div className="instructions">
-            <p>☝️ Solo índice = mover cursor</p>
-            <p>🤏 Pulgar + índice = agarrar</p>
-            <p>☝️ Borde inferior = scroll</p>
-          </div>
         </div>
       </div>
     </>
