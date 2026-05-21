@@ -1,0 +1,104 @@
+🎉 ¡TUS MODELOS 3D ESTÁN INTEGRADOS!
+
+═══════════════════════════════════════════════════════════
+
+✅ SERVIDOR ACTIVO: http://localhost:5173/
+
+═══════════════════════════════════════════════════════════
+
+🎮 CÓMO PROBAR:
+
+1. Abre tu navegador
+2. Ve a: http://localhost:5173/
+3. Verás el botón "🎮 Vista 3D" activo (esquina superior derecha)
+4. Arrastra las 4 piezas para armar la turbina
+5. Verás TUS MODELOS 3D aparecer uno por uno
+6. Arrastra con el mouse para ROTAR la vista 360°
+7. Usa scroll para ZOOM in/out
+8. Completa la turbina
+9. Ajusta el VIENTO (slider)
+10. Presiona "¡Girar Turbina!"
+11. Observa cómo el rotor gira MÁS RÁPIDO con más viento
+
+═══════════════════════════════════════════════════════════
+
+🖱️ CONTROLES:
+
+• Clic izquierdo + arrastrar = ROTAR cámara
+• Scroll = ZOOM in/out
+• Clic derecho + arrastrar = MOVER vista
+
+═══════════════════════════════════════════════════════════
+
+🎨 CAMBIAR VISTA:
+
+• Clic en "🎨 Vista 2D" = Ver diseños CSS
+• Clic en "🎮 Vista 3D" = Ver tus modelos 3D
+
+═══════════════════════════════════════════════════════════
+
+⚡ VELOCIDAD DEL ROTOR:
+
+• Viento 0-5 m/s = Gira LENTO
+• Viento 5-10 m/s = Gira MEDIO
+• Viento 10-15 m/s = Gira RÁPIDO
+• Viento 15-20 m/s = Gira MUY RÁPIDO
+
+═══════════════════════════════════════════════════════════
+
+📁 TUS MODELOS:
+
+✅ public/models/base.glb
+✅ public/models/tower.glb
+✅ public/models/nacelle.glb
+✅ public/models/rotor.glb
+
+═══════════════════════════════════════════════════════════
+
+📚 DOCUMENTACIÓN:
+
+• RESUMEN_MODELOS_3D.md = Resumen completo
+• EXPLICACION_INTEGRACION_3D.md = Detalles técnicos
+• GUIA_MODELOS_3D.md = Cómo preparar modelos
+• README.md = Guía general
+
+═══════════════════════════════════════════════════════════
+
+🎬 PARA PRESENTAR:
+
+1. Muestra la vista 3D
+2. Arrastra las piezas
+3. Rota la cámara 360°
+4. Ajusta el viento
+5. Muestra cómo cambia la velocidad
+6. Alterna entre 2D y 3D
+
+═══════════════════════════════════════════════════════════
+
+🐛 SI ALGO NO FUNCIONA:
+
+1. Refresca el navegador (Ctrl + Shift + R)
+2. Verifica que los archivos .glb estén en public/models/
+3. Abre la consola (F12) para ver errores
+4. Lee RESUMEN_MODELOS_3D.md
+
+═══════════════════════════════════════════════════════════
+
+✨ LO QUE TIENES:
+
+✅ Modelos 3D integrados
+✅ Rotación libre 360°
+✅ Zoom funcional
+✅ Velocidad del rotor basada en viento
+✅ Toggle 2D/3D
+✅ Iluminación realista
+✅ Sombras dinámicas
+✅ Controles en pantalla
+
+═══════════════════════════════════════════════════════════
+
+🚀 ¡LISTO PARA USAR!
+
+Abre: http://localhost:5173/
+
+¡Disfruta tu proyecto! 🎉

@@ -1,0 +1,142 @@
+═══════════════════════════════════════════════════════════
+🔧 SOLUCIONES APLICADAS
+═══════════════════════════════════════════════════════════
+
+✅ PROBLEMA 1: Cubos en lugar de modelos 3D
+   SOLUCIÓN: Mejorado el manejo de errores en Model3D.jsx
+   AHORA: Verás mensajes en la consola si hay problemas
+
+✅ PROBLEMA 2: No se puede arrastrar en vista 3D
+   SOLUCIÓN: Piezas ahora visibles en la parte inferior
+   AHORA: Puedes arrastrar piezas en ambas vistas
+
+✅ PROBLEMA 3: Solo se ve la mitad del recuadro
+   SOLUCIÓN: Altura fija de 600px
+   AHORA: Vista 3D ocupa todo el espacio
+
+═══════════════════════════════════════════════════════════
+🔍 DIAGNÓSTICO: Por qué ves cubos
+═══════════════════════════════════════════════════════════
+
+Los cubos son PLACEHOLDERS que aparecen cuando:
+1. El archivo GLB no existe
+2. El archivo GLB está corrupto
+3. Hay un error de ruta
+4. El archivo no se puede cargar
+
+═══════════════════════════════════════════════════════════
+📋 PASOS PARA VERIFICAR (HAZLO AHORA)
+═══════════════════════════════════════════════════════════
+
+PASO 1: Abre el navegador
+→ http://localhost:5173/
+
+PASO 2: Abre la consola del navegador
+→ Presiona F12
+→ Ve a la pestaña "Console"
+
+PASO 3: Busca mensajes
+→ ¿Ves "Error cargando /models/..."?
+→ ¿Ves "404" o "Failed to load"?
+→ ¿Ves "Mostrando placeholder para..."?
+
+PASO 4: Copia los errores
+→ Copia EXACTAMENTE lo que dice
+→ Dime qué errores ves
+
+═══════════════════════════════════════════════════════════
+🧪 TEST RÁPIDO: Verificar archivos
+═══════════════════════════════════════════════════════════
+
+Abre PowerShell y ejecuta:
+
+cd "D:\Calculo 2 proyecto\turbina-eolica-educativa"
+ls public/models/*.glb
+
+DEBERÍAS VER:
+- base.glb
+- tower.glb
+- nacelle.glb
+- rotor.glb
+
+Si NO los ves, los archivos no están ahí.
+
+═══════════════════════════════════════════════════════════
+🔬 TEST EN NAVEGADOR
+═══════════════════════════════════════════════════════════
+
+1. Abre: http://localhost:5173/models/base.glb
+
+¿Qué pasa?
+→ Se descarga el archivo = ✅ BIEN
+→ Error 404 = ❌ Archivo no existe
+→ Página en blanco = ❌ Problema de ruta
+
+2. Si se descarga, abre el archivo en:
+   https://gltf-viewer.donmccurdy.com/
+
+¿Se ve el modelo?
+→ SÍ = ✅ Archivo está bien
+→ NO = ❌ Archivo corrupto
+
+═══════════════════════════════════════════════════════════
+💡 SOLUCIONES SEGÚN EL PROBLEMA
+═══════════════════════════════════════════════════════════
+
+CASO A: Error 404 en consola
+→ Los archivos no están en public/models/
+→ SOLUCIÓN: Copia los archivos ahí
+
+CASO B: Archivo se descarga pero no se ve en visor
+→ Archivo GLB corrupto
+→ SOLUCIÓN: Re-exporta desde Blender o reconvierte
+
+CASO C: No hay errores pero siguen siendo cubos
+→ Problema de formato o escala
+→ SOLUCIÓN: Ajustar escala en Scene3D.jsx
+
+CASO D: Archivos muy grandes (>10MB)
+→ Timeout al cargar
+→ SOLUCIÓN: Optimizar modelos (reducir polígonos)
+
+═══════════════════════════════════════════════════════════
+🎯 LO QUE DEBES HACER AHORA
+═══════════════════════════════════════════════════════════
+
+1. Abre http://localhost:5173/
+2. Presiona F12
+3. Ve a Console
+4. Refresca (Ctrl + Shift + R)
+5. Copia los errores que veas
+6. Dime EXACTAMENTE qué dice
+
+CON ESA INFORMACIÓN PODRÉ AYUDARTE ESPECÍFICAMENTE
+
+═══════════════════════════════════════════════════════════
+📊 INFORMACIÓN QUE NECESITO
+═══════════════════════════════════════════════════════════
+
+1. ¿Qué errores ves en la consola (F12)?
+2. ¿Los archivos existen en public/models/?
+3. ¿Se descargan si vas a http://localhost:5173/models/base.glb?
+4. ¿Se ven en https://gltf-viewer.donmccurdy.com/?
+5. ¿Cuál es el tamaño de los archivos?
+
+═══════════════════════════════════════════════════════════
+🚀 MIENTRAS TANTO
+═══════════════════════════════════════════════════════════
+
+✅ Puedes usar la Vista 2D (funciona perfectamente)
+✅ Puedes arrastrar piezas en ambas vistas
+✅ La velocidad del rotor funciona
+✅ Todos los cálculos funcionan
+
+La Vista 3D funcionará cuando resolvamos el problema de carga.
+
+═══════════════════════════════════════════════════════════
+
+SERVIDOR ACTIVO: http://localhost:5173/
+ESTADO: ✅ Funcionando
+CAMBIOS: ✅ Aplicados
+
+SIGUIENTE PASO: Abre F12 y dime qué errores ves

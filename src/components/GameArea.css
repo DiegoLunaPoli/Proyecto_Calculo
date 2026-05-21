@@ -1,0 +1,562 @@
+.game-area {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.view-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggle-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.game-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 600px;
+}
+
+.build-zone {
+  flex: 1;
+  background: linear-gradient(180deg, rgba(135, 206, 250, 0.3) 0%, rgba(144, 238, 144, 0.3) 100%);
+  border-radius: 15px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  position: relative;
+  border: 3px dashed rgba(255, 255, 255, 0.4);
+}
+
+.turbine-assembly {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.assembly-guide {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.guide-text {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.guide-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: bounce 1s infinite;
+}
+
+.guide-text p {
+  font-size: 1.1rem;
+  color: #667eea;
+  font-weight: 600;
+  margin: 0;
+}
+
+.position-markers {
+  position: relative;
+  width: 200px;
+  height: 350px;
+  margin: 80px auto 0;
+}
+
+.marker {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px dashed #667eea;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #667eea;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.marker-base {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 40px;
+}
+
+.marker-tower {
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 150px;
+}
+
+.marker-nacelle {
+  bottom: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 50px;
+}
+
+.marker-rotor {
+  bottom: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.assembled-turbine {
+  position: relative;
+  width: 250px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;   /* rotor arriba → base abajo */
+  align-items: center;
+  justify-content: flex-end; /* anclar desde abajo */
+  animation: fadeIn 0.5s ease;
+}
+
+/* Base — al fondo */
+.turbine-base {
+  width: 140px;
+  height: 35px;
+  background: linear-gradient(180deg, #8d6e63 0%, #6d4c41 100%);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3),
+              inset 0 3px 8px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.turbine-base::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 15%;
+  width: 70%;
+  height: 12px;
+  background: linear-gradient(180deg, #5d4037 0%, #4e342e 100%);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Torre */
+.turbine-tower {
+  width: 60px;
+  height: 220px;
+  background: linear-gradient(90deg, #9e9e9e 0%, #e0e0e0 30%, #f5f5f5 50%, #e0e0e0 70%, #9e9e9e 100%);
+  border-radius: 8px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25),
+              inset -5px 0 15px rgba(0, 0, 0, 0.2),
+              inset 5px 0 15px rgba(255, 255, 255, 0.4);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.turbine-tower::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.turbine-tower::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+/* Góndola */
+.turbine-nacelle {
+  width: 110px;
+  height: 65px;
+  background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 50%, #1976d2 100%);
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(33, 150, 243, 0.5),
+              inset 0 3px 12px rgba(255, 255, 255, 0.3),
+              inset 0 -3px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.turbine-nacelle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.turbine-nacelle::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 16px;
+  background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Rotor — encima de la góndola */
+.turbine-rotor {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  z-index: 15;
+  flex-shrink: 0;
+  margin-bottom: -30px; /* baja el rotor para que solape con la góndola */
+}
+
+.spinning .turbine-rotor {
+  /* La animación ahora se aplica inline desde GameArea.jsx
+     con duración dinámica según windSpeed */
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.blade {
+  position: absolute;
+  width: 16px;
+  height: 95px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 40%, #e0e0e0 100%);
+  border-radius: 8px;
+  top: 50%;
+  left: 50%;
+  transform-origin: center bottom;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+              inset -2px 0 6px rgba(0, 0, 0, 0.15),
+              inset 2px 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.blade::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.blade::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.blade-1 {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.blade-2 {
+  transform: translate(-50%, -100%) rotate(120deg);
+}
+
+.blade-3 {
+  transform: translate(-50%, -100%) rotate(240deg);
+}
+
+/* Centro del rotor */
+.turbine-rotor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle, #424242 0%, #212121 100%);
+  border-radius: 50%;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5),
+              inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  z-index: 20;
+}
+
+.pieces-container {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.pieces-3d {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  max-width: 90%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.pieces-title {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pieces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.completion-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  animation: fadeIn 0.5s ease;
+}
+
+.message-content {
+  background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.celebration-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 15px;
+  animation: bounce 1s infinite;
+}
+
+.message-content h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.message-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .game-area {
+    min-height: 500px;
+  }
+  
+  .pieces-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .assembled-turbine {
+    transform: scale(0.8);
+  }
+}
+
+/* ── Layout vista 3D ─────────────────────────────────────────────────────── */
+.layout-3d {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  min-height: 420px;
+}
+
+/* Panel de marcadores — centrado verticalmente */
+.markers-panel-3d {
+  width: 150px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 14px 10px;
+  border: 2px solid rgba(255,255,255,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  align-self: center;  /* centrar verticalmente en el flex row */
+}
+
+.markers-title-3d {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 2px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.markers-list-3d {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* Marcador individual */
+.marker-3d-html {
+  background: rgba(255,255,255,0.6);
+  border: 2px dashed #667eea;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: default;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.marker-3d-html.drag-over,
+.marker-3d-html:not(.placed):hover {
+  background: rgba(102,126,234,0.25);
+  border-color: #4caf50;
+  border-style: solid;
+  transform: scale(1.03);
+}
+
+.marker-3d-html.placed {
+  background: rgba(76,175,80,0.18);
+  border-color: #4caf50;
+  border-style: solid;
+  opacity: 0.75;
+}
+
+.marker-3d-html-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.marker-3d-html-hint {
+  display: block;
+  font-size: 0.68rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.marker-placed-badge {
+  display: block;
+  font-size: 0.68rem;
+  color: #4caf50;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Canvas 3D ocupa el resto */
+.canvas-3d-wrapper {
+  flex: 1;
+  min-width: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.canvas-3d-wrapper .scene-3d-container {
+  height: 100%;
+  min-height: 420px;
+}
+
+/* Piezas en vista 3D — debajo del layout, sin posición absoluta */
+.pieces-3d {
+  position: static !important;
+  transform: none !important;
+  margin-top: 0;
+  background: rgba(255,255,255,0.18) !important;
+}
+
+.pieces-3d .pieces-title {
+  color: white;
+}

@@ -1,0 +1,186 @@
+.hand-tracking-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.camera-view {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.input-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.output-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+}
+
+.tracking-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-indicator {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5722;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.active .status-dot {
+  background: #4caf50;
+}
+
+.status-indicator.loading .status-dot {
+  background: #ff9800;
+  animation: pulse 0.8s infinite;
+}
+
+.pinch-indicator {
+  background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+  padding: 8px 15px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  animation: pulse 0.5s infinite;
+}
+
+.instructions {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 10px 15px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.instructions p {
+  color: white;
+  font-size: 0.75rem;
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .hand-tracking-container {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .camera-view {
+    width: 240px;
+    height: 180px;
+  }
+  
+  .instructions p {
+    font-size: 0.65rem;
+  }
+}
+
+/* ── Cursor virtual de mano ─────────────────────────────── */
+.hand-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+}
+
+/* Punto central — gris por defecto (sin gesto reconocido) */
+.hand-cursor::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background: rgba(200,200,200,0.6);
+  border-radius: 50%;
+  transition: background 0.15s, inset 0.15s, box-shadow 0.15s;
+}
+
+/* Anillo exterior */
+.hand-cursor::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(200,200,200,0.5);
+  border-radius: 50%;
+  transition: border-color 0.15s;
+}
+
+/* ☝️ Señalando con índice → azul */
+.hand-cursor.gesture-pointing::before {
+  background: #2196f3;
+  box-shadow: 0 0 10px rgba(33,150,243,0.8);
+  inset: 6px;
+}
+.hand-cursor.gesture-pointing::after {
+  border-color: #2196f3;
+  animation: cursor-pulse 1.4s ease-in-out infinite;
+}
+
+/* 🤏 Pinza (pulgar + índice) → verde */
+.hand-cursor.gesture-pinch::before {
+  background: #4caf50;
+  box-shadow: 0 0 14px rgba(76,175,80,0.9);
+  inset: 3px;
+}
+.hand-cursor.gesture-pinch::after {
+  border-color: #4caf50;
+  animation: cursor-grab 0.45s ease-in-out infinite;
+}
+
+/* Badge de gesto */
+.gesture-badge-pointing {
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%) !important;
+}
+.gesture-badge-pinch {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%) !important;
+}
+
+@keyframes cursor-pulse {
+  0%, 100% { transform: scale(1);   opacity: 0.7; }
+  50%       { transform: scale(1.35); opacity: 0.35; }
+}
+@keyframes cursor-grab {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.55); opacity: 0.65; }
+}

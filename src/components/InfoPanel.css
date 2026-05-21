@@ -1,0 +1,53 @@
+.info-panel-side {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 16px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 120px;
+}
+
+.info-panel-title {
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 4px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+
+.info-panel-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-panel-btn {
+  background: var(--btn-color, #667eea);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  transition: filter 0.2s, transform 0.15s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.info-panel-btn:hover {
+  filter: brightness(1.12);
+  transform: translateX(3px);
+}
+
+.info-panel-btn:active {
+  transform: translateX(0) scale(0.97);
+}

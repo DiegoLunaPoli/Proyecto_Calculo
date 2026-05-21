@@ -1,0 +1,128 @@
+.comparison-panel {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.panel-icon {
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+}
+
+.panel-header h3 {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  flex: 1;
+}
+
+.comparison-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.comparison-item {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-left: 4px solid;
+  transition: all 0.3s ease;
+}
+
+.comparison-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
+}
+
+.item-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item-name {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.item-count {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-weight: 700;
+}
+
+.count-number {
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.count-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.eco-message {
+  background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.eco-icon {
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.eco-message p {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .comparison-panel {
+    padding: 20px;
+  }
+  
+  .item-icon {
+    font-size: 2rem;
+  }
+  
+  .count-number {
+    font-size: 1.5rem;
+  }
+  
+  .eco-icon {
+    font-size: 2rem;
+  }
+}
